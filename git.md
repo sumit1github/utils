@@ -31,3 +31,38 @@ cat id_workemail.pub
 cat id_personalemail.pub
 ```
 copy and paste it in github
+
+### step4 : update the config file
+-
+  ```
+  cd ~/.ssh
+  ```
+
+-  `touch config` is no config file is present
+-  open config file
+-  ```
+   nano config
+
+   # --- paste at the end ---
+   Host hge-nsg
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_whge
+    AddKeysToAgent yes
+   
+   ```
+- `Host hge-nsg` -> identifier name, can be any
+- `HostName github.com ` -> github.com is the actual domain/sub-domain
+- `User git ` -> always will be the git
+- `IdentityFile ~/.ssh/id_whge` -> point to the private key
+- `AddKeysToAgent yes` -> tells SSH to automatically add the private key
+
+### ste5 : need to test it
+`Host hge-nsg` going to use this identifier to test
+
+```
+ssh -T hge-nsg
+==> Hi abharadwaj-hge! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+
